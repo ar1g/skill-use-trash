@@ -1,0 +1,6 @@
+#!/bin/bash
+# Sentinel: logs any rm invocation and fails loudly.
+# Place this earlier in PATH than real rm to catch agent misuse.
+echo "RM_CALLED: rm $*" >> "${RM_SENTINEL_LOG:-/tmp/rm-sentinel.log}"
+echo "ERROR: rm is not allowed — use trash instead." >&2
+exit 1
